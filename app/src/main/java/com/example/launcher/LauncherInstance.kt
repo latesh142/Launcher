@@ -15,9 +15,14 @@ import android.content.pm.ResolveInfo
 import android.content.Intent
 import android.content.pm.ActivityInfo
 
-
+/**
+ * This is the singleTone class which help to get the launcher applications
+ */
 object LauncherInstance {
 
+    /** Initialize the package manager and get the application list which can launch
+     * @param mContext will be the activity context
+     */
     fun getApplicationList(mContext: Context):TreeSet<ApplicationData> {
         val packageManager: PackageManager = mContext.packageManager
         val packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
@@ -36,6 +41,10 @@ object LauncherInstance {
         return applications
     }
 
+    //
+    /**
+     * @param appInfo used to set other parameter of application data
+     */
     private fun getApplication(appInfo: ActivityInfo, packageManager: PackageManager): ApplicationData{
         val packageName = appInfo.packageName
         val appInfoData = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
